@@ -31,42 +31,6 @@ class xArmParams:
         self.CartesianWrenchNoiseThreshold = np.array([5.0, 5.0, 5.0, 2.0, 2.0, 2.0])
 
 
-    # def getLinksMass(self):
-    #     # Model 2
-    #     LinkMass = np.zeros(8)
-    #     LinkMass[0] = 2.9710  # base mass
-    #     LinkMass[1] = 2.46
-    #     LinkMass[2] = 1.916
-    #     LinkMass[3] = 1.69
-    #     LinkMass[4] = 1.774
-    #     LinkMass[5] = 1.357
-    #     LinkMass[6] = 1.362
-    #     LinkMass[7] = 0.17
-    #
-    #     # Model 3
-    #     LinkMass = np.zeros(8)
-    #     LinkMass[0] = 2.9710  # base mass
-    #     LinkMass[1] = 2.382
-    #     LinkMass[2] = 1.869
-    #     LinkMass[3] = 1.638
-    #     LinkMass[4] = 1.727
-    #     LinkMass[5] = 1.32
-    #     LinkMass[6] = 1.325
-    #     LinkMass[7] = 0.17
-    #
-    #     # Model 4
-    #     LinkMass = np.zeros(8)
-    #     LinkMass[0] = 2.9710  # base mass
-    #     LinkMass[1] = 2.53
-    #     LinkMass[2] = 2.166
-    #     LinkMass[3] = 1.98
-    #     LinkMass[4] = 2.08
-    #     LinkMass[5] = 1.36
-    #     LinkMass[6] = 1.345
-    #     LinkMass[7] = 0.173
-    #
-    #     return LinkMass
-
     def getLinksMass(self):
         """
         Returns the mass of the xArm7 links based on the specific hardware model.
@@ -79,23 +43,23 @@ class xArmParams:
         if model_number == 1:
             # Model 1 (v1.2 Hardware)
             link_mass[0] = 2.9710  # base mass
+            link_mass[1] = 2.117
+            link_mass[2] = 1.716
+            link_mass[3] = 1.485
+            link_mass[4] = 1.574
+            link_mass[5] = 1.209
+            link_mass[6] = 1.214
+            link_mass[7] = 0.17
+
+        elif model_number == 2:
+            # Model 2 (v1.3 Hardware - Your Robot XS13...)
+            link_mass[0] = 2.9710  # base mass
             link_mass[1] = 2.46
             link_mass[2] = 1.916
             link_mass[3] = 1.69
             link_mass[4] = 1.774
             link_mass[5] = 1.357
             link_mass[6] = 1.362
-            link_mass[7] = 0.17
-
-        elif model_number == 2:
-            # Model 2 (v1.3 Hardware - Your Robot XS13...)
-            link_mass[0] = 2.9710  # base mass
-            link_mass[1] = 2.382
-            link_mass[2] = 1.869
-            link_mass[3] = 1.638
-            link_mass[4] = 1.727
-            link_mass[5] = 1.32
-            link_mass[6] = 1.325
             link_mass[7] = 0.17
 
         elif model_number == 3:
@@ -126,194 +90,6 @@ class xArmParams:
 
         return link_mass
 
-    # def getLinksCOM(self):
-    #     # xArm Model 2??:
-    #     # LinkCOMxyz = np.zeros([self.nActuatorCount + 1, 3])
-    #     # LinkCOMxyz[0][0] = 0.000  # base COM w.r.t. base frame
-    #     # LinkCOMxyz[0][1] = 0.000
-    #     # LinkCOMxyz[0][2] = 0.050
-    #     #
-    #     # LinkCOMxyz[1][0] = 0.00013
-    #     # LinkCOMxyz[1][1] = 0.0294
-    #     # LinkCOMxyz[1][2] = -0.0124
-    #     #
-    #     # LinkCOMxyz[2][0] = 0.0002
-    #     # LinkCOMxyz[2][1] = -0.12856
-    #     # LinkCOMxyz[2][2] = 0.01735
-    #     #
-    #     # LinkCOMxyz[3][0] = 0.0466
-    #     # LinkCOMxyz[3][1] = -0.02463
-    #     # LinkCOMxyz[3][2] = -0.00768
-    #     #
-    #     # LinkCOMxyz[4][0] = 0.0705
-    #     # LinkCOMxyz[4][1] = -0.11575
-    #     # LinkCOMxyz[4][2] = 0.012
-    #     #
-    #     # LinkCOMxyz[5][0] = -0.00032
-    #     # LinkCOMxyz[5][1] = 0.0164
-    #     # LinkCOMxyz[5][2] = -0.026
-    #     #
-    #     # LinkCOMxyz[6][0] = 0.0647
-    #     # LinkCOMxyz[6][1] = 0.0328
-    #     # LinkCOMxyz[6][2] = 0.0214
-    #     #
-    #     # LinkCOMxyz[7][0] = 0.000000
-    #     # LinkCOMxyz[7][1] = -0.00677
-    #     # LinkCOMxyz[7][2] = -0.01098
-    #
-    #
-    #     # xArm Model 2:
-    #     LinkCOMxyz = np.zeros([self.nActuatorCount+1, 3])
-    #     LinkCOMxyz[0][0] = 0.000  # base COM w.r.t. base frame
-    #     LinkCOMxyz[0][1] = 0.000
-    #     LinkCOMxyz[0][2] = 0.050
-    #
-    #     LinkCOMxyz[1][0] = 0.00013
-    #     LinkCOMxyz[1][1] = 0.03010
-    #     LinkCOMxyz[1][2] = -0.0120
-    #
-    #     LinkCOMxyz[2][0] =  0.0002
-    #     LinkCOMxyz[2][1] = -0.1296
-    #     LinkCOMxyz[2][2] =  0.0169
-    #
-    #     LinkCOMxyz[3][0] =  0.04676
-    #     LinkCOMxyz[3][1] = -0.0253
-    #     LinkCOMxyz[3][2] = -0.00746
-    #
-    #     LinkCOMxyz[4][0] =  0.07066
-    #     LinkCOMxyz[4][1] = -0.1166
-    #     LinkCOMxyz[4][2] =  0.0117
-    #
-    #     LinkCOMxyz[5][0] = -0.0003
-    #     LinkCOMxyz[5][1] =  0.0156
-    #     LinkCOMxyz[5][2] = -0.0253
-    #
-    #     LinkCOMxyz[6][0] =  0.0650
-    #     LinkCOMxyz[6][1] =  0.0334
-    #     LinkCOMxyz[6][2] =  0.0213
-    #
-    #     LinkCOMxyz[7][0] =  0.000000
-    #     LinkCOMxyz[7][1] = -0.00677
-    #     LinkCOMxyz[7][2] = -0.01098
-    #
-    #
-    #     # xArm7 Model 3:
-    #     LinkCOMxyz = np.zeros([self.nActuatorCount + 1, 3])
-    #     # Base Frame
-    #     LinkCOMxyz[0][0] = 0.000
-    #     LinkCOMxyz[0][1] = 0.000
-    #     LinkCOMxyz[0][2] = 0.050
-    #
-    #     # Link 1
-    #     LinkCOMxyz[1][0] = 0.00013
-    #     LinkCOMxyz[1][1] = 0.0294
-    #     LinkCOMxyz[1][2] = -0.0124
-    #
-    #     # Link 2
-    #     LinkCOMxyz[2][0] = 0.0002
-    #     LinkCOMxyz[2][1] = -0.12856
-    #     LinkCOMxyz[2][2] = 0.01735
-    #
-    #     # Link 3
-    #     LinkCOMxyz[3][0] = 0.0466
-    #     LinkCOMxyz[3][1] = -0.02463
-    #     LinkCOMxyz[3][2] = -0.00768
-    #
-    #     # Link 4
-    #     LinkCOMxyz[4][0] = 0.0705
-    #     LinkCOMxyz[4][1] = -0.11575
-    #     LinkCOMxyz[4][2] = 0.012
-    #
-    #     # Link 5
-    #     LinkCOMxyz[5][0] = -0.00032
-    #     LinkCOMxyz[5][1] = 0.01604
-    #     LinkCOMxyz[5][2] = -0.026
-    #
-    #     # Link 6
-    #     LinkCOMxyz[6][0] = 0.0647
-    #     LinkCOMxyz[6][1] = 0.0328
-    #     LinkCOMxyz[6][2] = 0.0214
-    #
-    #     # Link 7
-    #     LinkCOMxyz[7][0] = 0.00000
-    #     LinkCOMxyz[7][1] = -0.00677
-    #     LinkCOMxyz[7][2] = -0.01098
-    #
-    #     # xArm Model 4:
-    #     LinkCOMxyz = np.zeros([self.nActuatorCount + 1, 3])
-    #     # Base Frame (Assuming standard base if not provided)
-    #     LinkCOMxyz[0][0] = 0.000
-    #     LinkCOMxyz[0][1] = 0.000
-    #     LinkCOMxyz[0][2] = 0.050
-    #
-    #     # Link 1
-    #     LinkCOMxyz[1][0] = -0.000164
-    #     LinkCOMxyz[1][1] = 0.03594
-    #     LinkCOMxyz[1][2] = -0.0065
-    #
-    #     # Link 2
-    #     LinkCOMxyz[2][0] = -0.00021
-    #     LinkCOMxyz[2][1] = -0.1389
-    #     LinkCOMxyz[2][2] = 0.01683
-    #
-    #     # Link 3
-    #     LinkCOMxyz[3][0] = 0.0467
-    #     LinkCOMxyz[3][1] = -0.0226
-    #     LinkCOMxyz[3][2] = -0.00764
-    #
-    #     # Link 4
-    #     LinkCOMxyz[4][0] = 0.0707
-    #     LinkCOMxyz[4][1] = -0.12454
-    #     LinkCOMxyz[4][2] = 0.01227
-    #
-    #     # Link 5
-    #     LinkCOMxyz[5][0] = 0.00019
-    #     LinkCOMxyz[5][1] = 0.0146
-    #     LinkCOMxyz[5][2] = -0.02198
-    #
-    #     # Link 6
-    #     LinkCOMxyz[6][0] = 0.06824
-    #     LinkCOMxyz[6][1] = 0.03342
-    #     LinkCOMxyz[6][2] = 0.00264
-    #
-    #     # Link 7
-    #     LinkCOMxyz[7][0] = 0.0008
-    #     LinkCOMxyz[7][1] = -0.00359
-    #     LinkCOMxyz[7][2] = -0.01326
-    #
-    #
-    #     # LinkCOMxyz = np.zeros([7, 3])
-    #     #
-    #     # LinkCOMxyz[0][0] = 0.00013
-    #     # LinkCOMxyz[0][1] = 0.0294
-    #     # LinkCOMxyz[0][2] = -0.0124
-    #     #
-    #     # LinkCOMxyz[1][0] = 0.0002
-    #     # LinkCOMxyz[1][1] = -0.12856
-    #     # LinkCOMxyz[1][2] = 0.01735
-    #     #
-    #     # LinkCOMxyz[2][0] = 0.0466
-    #     # LinkCOMxyz[2][1] = -0.02463
-    #     # LinkCOMxyz[2][2] = -0.00768
-    #     #
-    #     # LinkCOMxyz[3][0] = 0.0705
-    #     # LinkCOMxyz[3][1] = -0.11575
-    #     # LinkCOMxyz[3][2] = 0.012
-    #     #
-    #     # LinkCOMxyz[4][0] = -0.00032
-    #     # LinkCOMxyz[4][1] = 0.0164
-    #     # LinkCOMxyz[4][2] = -0.026
-    #     #
-    #     # LinkCOMxyz[5][0] = 0.0647
-    #     # LinkCOMxyz[5][1] = 0.0328
-    #     # LinkCOMxyz[5][2] = 0.0214
-    #     #
-    #     # LinkCOMxyz[6][0] = 0.000000
-    #     # LinkCOMxyz[6][1] = -0.00677
-    #     # LinkCOMxyz[6][2] = -0.01098
-    #
-    #     return LinkCOMxyz
-
     def getLinksCOM(self):
         """
         Returns the Center of Mass (COM) coordinates for xArm7 links.
@@ -324,9 +100,44 @@ class xArmParams:
         # Initialize array for Base + 7 Joints
         LinkCOMxyz = np.zeros([self.nActuatorCount + 1, 3])
 
+        if model_number == 1:
+            # xArm7 Model 1
+            LinkCOMxyz[0][0] = 0.000  # base COM w.r.t. base frame
+            LinkCOMxyz[0][1] = 0.000
+            LinkCOMxyz[0][2] = 0.050
+
+            LinkCOMxyz[1][0] = 0.00015
+            LinkCOMxyz[1][1] = 0.02724
+            LinkCOMxyz[1][2] = -0.01375
+
+            LinkCOMxyz[2][0] = 0.00022
+            LinkCOMxyz[2][1] = -0.1247
+            LinkCOMxyz[2][2] = 0.0189
+
+            LinkCOMxyz[3][0] = 0.0460
+            LinkCOMxyz[3][1] = -0.0223
+            LinkCOMxyz[3][2] = -0.00847
+
+            LinkCOMxyz[4][0] = -0.06975
+            LinkCOMxyz[4][1] = -0.1125
+            LinkCOMxyz[4][2] = 0.0132
+
+            LinkCOMxyz[5][0] = -0.00035
+            LinkCOMxyz[5][1] = 0.0176
+            LinkCOMxyz[5][2] = -0.0284
+
+            LinkCOMxyz[6][0] = 0.06365
+            LinkCOMxyz[6][1] = 0.03084
+            LinkCOMxyz[6][2] = 0.0217
+
+            LinkCOMxyz[7][0] = 0.000000
+            LinkCOMxyz[7][1] = -0.00677
+            LinkCOMxyz[7][2] = -0.01098
+
         if model_number == 2:
             # xArm7 Model 2 (v1.3 Hardware)
-            LinkCOMxyz[0][0] = 0.000  # Base
+
+            LinkCOMxyz[0][0] = 0.000  # base COM w.r.t. base frame
             LinkCOMxyz[0][1] = 0.000
             LinkCOMxyz[0][2] = 0.050
 
@@ -360,68 +171,85 @@ class xArmParams:
 
         elif model_number == 3:
             # xArm7 Model 3 (Transitional 2020 batches)
-            LinkCOMxyz[0][0] = 0.000  # Base
+            LinkCOMxyz[0][0] = 0.000
             LinkCOMxyz[0][1] = 0.000
             LinkCOMxyz[0][2] = 0.050
 
+            # Link 1
             LinkCOMxyz[1][0] = 0.00013
             LinkCOMxyz[1][1] = 0.0294
             LinkCOMxyz[1][2] = -0.0124
 
+            # Link 2
             LinkCOMxyz[2][0] = 0.0002
             LinkCOMxyz[2][1] = -0.12856
             LinkCOMxyz[2][2] = 0.01735
 
+            # Link 3
             LinkCOMxyz[3][0] = 0.0466
             LinkCOMxyz[3][1] = -0.02463
             LinkCOMxyz[3][2] = -0.00768
 
+            # Link 4
             LinkCOMxyz[4][0] = 0.0705
             LinkCOMxyz[4][1] = -0.11575
             LinkCOMxyz[4][2] = 0.012
 
+            # Link 5
             LinkCOMxyz[5][0] = -0.00032
             LinkCOMxyz[5][1] = 0.01604
             LinkCOMxyz[5][2] = -0.026
 
+            # Link 6
             LinkCOMxyz[6][0] = 0.0647
             LinkCOMxyz[6][1] = 0.0328
             LinkCOMxyz[6][2] = 0.0214
 
+            # Link 7
             LinkCOMxyz[7][0] = 0.00000
             LinkCOMxyz[7][1] = -0.00677
             LinkCOMxyz[7][2] = -0.01098
 
+
         elif model_number == 4:
             # xArm7 Model 4 (v1.5+ Hardware)
-            LinkCOMxyz[0][0] = 0.000  # Base
+
+            # Base Frame (Assuming standard base if not provided)
+            LinkCOMxyz[0][0] = 0.000
             LinkCOMxyz[0][1] = 0.000
             LinkCOMxyz[0][2] = 0.050
 
+            # Link 1
             LinkCOMxyz[1][0] = -0.000164
             LinkCOMxyz[1][1] = 0.03594
             LinkCOMxyz[1][2] = -0.0065
 
+            # Link 2
             LinkCOMxyz[2][0] = -0.00021
             LinkCOMxyz[2][1] = -0.1389
             LinkCOMxyz[2][2] = 0.01683
 
+            # Link 3
             LinkCOMxyz[3][0] = 0.0467
             LinkCOMxyz[3][1] = -0.0226
             LinkCOMxyz[3][2] = -0.00764
 
+            # Link 4
             LinkCOMxyz[4][0] = 0.0707
             LinkCOMxyz[4][1] = -0.12454
             LinkCOMxyz[4][2] = 0.01227
 
+            # Link 5
             LinkCOMxyz[5][0] = 0.00019
             LinkCOMxyz[5][1] = 0.0146
             LinkCOMxyz[5][2] = -0.02198
 
+            # Link 6
             LinkCOMxyz[6][0] = 0.06824
             LinkCOMxyz[6][1] = 0.03342
             LinkCOMxyz[6][2] = 0.00264
 
+            # Link 7
             LinkCOMxyz[7][0] = 0.0008
             LinkCOMxyz[7][1] = -0.00359
             LinkCOMxyz[7][2] = -0.01326
