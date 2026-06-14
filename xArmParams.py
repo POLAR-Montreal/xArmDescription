@@ -43,7 +43,7 @@ class xArmParams:
         if model_number == 1:
             # Model 1 (v1.2 Hardware)
             link_mass[0] = 2.9710  # base mass
-            link_mass[1] = 2.117
+            link_mass[1] = 2.177
             link_mass[2] = 1.716
             link_mass[3] = 1.485
             link_mass[4] = 1.574
